@@ -1,7 +1,6 @@
 from random import randrange, choice
 from math import floor
-from itertools import chain
-from EncounterConfig import EncounterConfig
+from itertools import chain, groupby
 from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss, DungeonNodeStarter
 
 class DungeonMap:
@@ -9,8 +8,11 @@ class DungeonMap:
     self.startingNode = DungeonNodeStarter()
     self.branches = []
   
+  def getFlattenedBranches(self):
+    return chain.from_iterable(self.branches)
+
   def getTotalDifficulty(self):
-    return sum(map(lambda x: x.difficulty, chain.from_iterable(self.branches)))
+    return sum(map(lambda x: x.difficulty, self.getFlattenedBranches()))
 
   def append(self, nodes):
     self.startingNode.addExit(nodes[0])
@@ -18,9 +20,13 @@ class DungeonMap:
   
   def getExitList(self):
     return self.startingNode.getExitList()
+  
+  def nodesByDifficulty(self):
+    difficulty = lambda x: x.difficulty
+    return groupby(list(self.getFlattenedBranches()).sort(key=difficulty), key=difficulty)
 
 class Dungeon:
-  def __init__(self, playHours=4, timeScale=15):
+  def __init__(self, encounterConfig, playHours=4, timeScale=15):
     self.timeScale = timeScale
     totalPlayHours = playHours - (timeScale * 2) / 60
     totalDifficulty = (totalPlayHours * 60) / timeScale
@@ -29,11 +35,11 @@ class Dungeon:
     if (self.maxDifficulty <= 0):
       raise Exception("Can not calculate parameters given, please change and try again.")
     self.branches = DungeonMap()
-    self.encounterConfig = EncounterConfig({})
+    self.encounterConfig = encounterConfig
 
     def connect(start, end):
       start.addExit(end)
-      # end.addExit(start)
+      end.addExit(start) # we connect both to check for generators
 
     def getBranch(endingDifficulty):
       nodes = []
@@ -79,6 +85,10 @@ class Dungeon:
         shortcuts = randrange(3)
         for _ in range(shortcuts):
           addShortcut(branch, node)
+
+    print(self.branches.nodesByDifficulty())
+    for _, nodes in self.branches.nodesByDifficulty():
+      choice(list(nodes)).addGenerator()
 
   def printDiagram(self):
     print('flowchart TD')

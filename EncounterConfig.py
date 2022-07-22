@@ -1,8 +1,5 @@
-from random import sample
-class Encounter:
-    pass
+from random import choice
 
-#
 class EncounterConfig:
     # encounters should be a dictionary of lists.
     # liberation maps expect these values: virus, hazard, alarm, lockbox, generator, boss
@@ -19,6 +16,6 @@ class EncounterConfig:
         # benefit can be mysterdata for everyone
 
         # alarm encounters are probably effected by viruses somehow. This usually means inhabiting.
-        # encounter = sample(self.encounters[_type],1)[0]
-        # return encounter
+        # return choice(self.encounters[_type])
         return _type
+
