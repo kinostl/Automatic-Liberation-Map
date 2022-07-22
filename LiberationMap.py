@@ -60,17 +60,16 @@ class Dungeon:
       self.branches.append(getBranch(currentDifficulty))
 
     #add shortcuts
-    def addShortcut(i, start):
+    def addShortcut(branch, start):
       endBranchDiff = sample([-1,1],1)[0]
-      endBranch = i + endBranchDiff
+      endBranch = branch + endBranchDiff
       endDifficulty = start.difficulty + sample([0, 1],1)[0]
       if(endBranch >= len(self.branches.branches)):
-        endBranch = endBranchDiff
+        endBranch = 0
       if (endDifficulty <= self.maxDifficulty):
         try:
           end = self.branches.branches[endBranch][endDifficulty]
-          if start is not end:
-            connect(start, end)
+          connect(start, end)
         except IndexError:
           pass
 
