@@ -8,7 +8,7 @@ class DungeonNode:
     def __init__(self, encounterConfig, difficulty, _type):
         # needs a name
         self.getEncounter = encounterConfig.getEncounter
-        self.name=str(uuid.uuid4())
+        self.name=str(uuid.uuid4()).split('-')[0]
         self.encounter = []
         self.exits = []
         self.difficulty = difficulty
@@ -45,7 +45,7 @@ class DungeonNode:
         pass
 
     def getExitList(self):
-        return map(lambda x: f'{self.name}-->{x.name}',self.exits)
+        return list(map(lambda x: f'{self.name}---{x.name}',self.exits))
 
 class DungeonNodeBasic(DungeonNode):
     def __init__(self, encounterConfig, difficulty, _type):
@@ -64,3 +64,8 @@ class DungeonNodeBoss(DungeonNode):
             self.encounter.append(self.getEncounter(_type))
         self.encounter.append('boss')
         pass
+
+class DungeonNodeStarter(DungeonNode):
+    def __init__(self):
+        self.name='Start'
+        self.exits=[]

@@ -2,21 +2,23 @@ from random import sample, randrange
 from math import floor
 from itertools import chain
 from EncounterConfig import EncounterConfig
-from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss
+from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss, DungeonNodeStarter
 from functools import reduce
 
 class DungeonMap:
   def __init__(self):
+    self.startingNode = DungeonNodeStarter()
     self.branches = []
   
   def getTotalDifficulty(self):
     return sum(map(lambda x: x.difficulty, chain.from_iterable(self.branches)))
 
-  def append(self, node):
-    self.branches.append(node)
+  def append(self, nodes):
+    self.startingNode.addExit(nodes[0])
+    self.branches.append(nodes)
   
   def getExitList(self):
-    return map(lambda x: f'[*]-->{x[0].name}',self.branches)
+    return self.startingNode.getExitList()
 
 class Dungeon:
   def __init__(self, playHours=4, timeScale=15):
@@ -24,15 +26,15 @@ class Dungeon:
     totalPlayHours = playHours - (timeScale * 2) / 60
     totalDifficulty = (totalPlayHours * 60) / timeScale
     bossDifficulty = int(floor(((totalPlayHours / 4) * 60) / timeScale))
-    maxDifficulty = bossDifficulty - 1
-    if (maxDifficulty <= 0):
+    self.maxDifficulty = bossDifficulty - 1
+    if (self.maxDifficulty <= 0):
       raise Exception("Can not calculate parameters given, please change and try again.")
     self.branches = DungeonMap()
     self.encounterConfig = EncounterConfig({})
 
     def connect(start, end):
       start.addExit(end)
-      end.addExit(start)
+      # end.addExit(start)
 
     def getBranch(endingDifficulty):
       nodes = []
@@ -54,7 +56,7 @@ class Dungeon:
     self.branches.append(getBossBranch(bossDifficulty))
 
     while (self.branches.getTotalDifficulty() < totalDifficulty):
-      currentDifficulty = randrange(maxDifficulty)  + 1
+      currentDifficulty = randrange(self.maxDifficulty)  + 1
       self.branches.append(getBranch(currentDifficulty))
 
     #add shortcuts
@@ -64,9 +66,13 @@ class Dungeon:
       endDifficulty = start.difficulty + sample([0, 1],1)[0]
       if(endBranch >= len(self.branches.branches)):
         endBranch = endBranchDiff
-      if (endDifficulty <= maxDifficulty) and (endDifficulty in self.branches.branches[endBranch]) and (start is not end):
-        end = self.branches.branches[endBranch][endDifficulty]
-        connect(start, end)
+      if (endDifficulty <= self.maxDifficulty):
+        try:
+          end = self.branches.branches[endBranch][endDifficulty]
+          if start is not end:
+            connect(start, end)
+        except IndexError:
+          pass
 
     for branch, nodes in enumerate(self.branches.branches):
       addShortcut(branch, nodes[-1])
@@ -76,13 +82,13 @@ class Dungeon:
           addShortcut(branch, node)
 
   def printDiagram(self):
-    print('stateDiagram-v2')
-    for exit in self.branches.getExitList():
-      print(f'\t{exit}')
+    print('flowchart TD')
+    exits = self.branches.getExitList()
     for branch in self.branches.branches:
       for node in branch:
-        for exit in node.getExitList():
-          print(f'\t{exit}')
+        exits+=node.getExitList()
+    for exit in set(exits):
+      print(f'\t{exit}')
 
   def printExpectedPlayTime(self):
     totalTime = 0
