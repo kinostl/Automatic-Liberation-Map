@@ -9,7 +9,8 @@ class DungeonMap:
     self.branches = []
   
   def getFlattenedBranches(self):
-    return chain.from_iterable(self.branches)
+    difficulty = lambda x: x.difficulty
+    return sorted(list(chain.from_iterable(self.branches)),key=difficulty)
 
   def getTotalDifficulty(self):
     return sum(map(lambda x: x.difficulty, self.getFlattenedBranches()))
@@ -23,7 +24,7 @@ class DungeonMap:
   
   def nodesByDifficulty(self):
     difficulty = lambda x: x.difficulty
-    return groupby(list(self.getFlattenedBranches()).sort(key=difficulty), key=difficulty)
+    return groupby(self.getFlattenedBranches(), key=difficulty)
 
 class Dungeon:
   def __init__(self, encounterConfig, playHours=4, timeScale=15):
@@ -86,7 +87,6 @@ class Dungeon:
         for _ in range(shortcuts):
           addShortcut(branch, node)
 
-    print(self.branches.nodesByDifficulty())
     for _, nodes in self.branches.nodesByDifficulty():
       choice(list(nodes)).addGenerator()
 

@@ -15,7 +15,7 @@ class DungeonNode:
         self.exits = []
         self.difficulty = difficulty
         self._type = _type # fight, social, or puzzle
-        self.name=f'{self.id}({self.name} - {self.difficulty})'
+        self.title=f'{self.id}({self.name} - {self.difficulty})'
 
         self.countdown = randrange(4,12)
 
@@ -36,6 +36,7 @@ class DungeonNode:
         # generators double as signal nodes
         # each generator is also the key for the current difficulty
         self.generator = self.getEncounter('generator')
+        self.title=f'{self.id}({self.name} - {self.difficulty}- Generator)'
 
     def clearGenerator(self):
         # generators double as signal nodes
@@ -48,7 +49,7 @@ class DungeonNode:
         pass
 
     def getExitList(self):
-        return list(map(lambda x: f'{self.name}---{x.name}',self.exits))
+        return list(map(lambda x: f'{self.title}---{x.title}',self.exits))
 
 class DungeonNodeBasic(DungeonNode):
     def __init__(self, encounterConfig, difficulty, _type):
@@ -71,4 +72,5 @@ class DungeonNodeBoss(DungeonNode):
 class DungeonNodeStarter(DungeonNode):
     def __init__(self):
         self.name='Start'
+        self.title=self.name
         self.exits=[]
