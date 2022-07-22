@@ -3,7 +3,6 @@ from math import floor
 from itertools import chain
 from EncounterConfig import EncounterConfig
 from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss, DungeonNodeStarter
-from functools import reduce
 
 class DungeonMap:
   def __init__(self):
@@ -64,6 +63,7 @@ class Dungeon:
       endBranchDiff = sample([-1,1],1)[0]
       endBranch = branch + endBranchDiff
       endDifficulty = start.difficulty + sample([0, 1],1)[0]
+      endDifficulty = endDifficulty - 1
       if(endBranch >= len(self.branches.branches)):
         endBranch = 0
       if (endDifficulty <= self.maxDifficulty):

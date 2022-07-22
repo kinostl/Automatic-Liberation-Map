@@ -13,6 +13,7 @@ class DungeonNode:
         self.exits = []
         self.difficulty = difficulty
         self._type = _type # fight, social, or puzzle
+        self.name=f'{self.name}({self.name} - {self.difficulty})'
 
         self.countdown = randrange(4,12)
 
