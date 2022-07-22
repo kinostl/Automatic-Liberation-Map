@@ -1,4 +1,5 @@
 from random import randrange
+from RandomName import haiku
 import uuid
 
 class DungeonNode:
@@ -8,12 +9,13 @@ class DungeonNode:
     def __init__(self, encounterConfig, difficulty, _type):
         # needs a name
         self.getEncounter = encounterConfig.getEncounter
-        self.name=str(uuid.uuid4()).split('-')[0]
+        self.id=str(uuid.uuid4()).split('-')[0]
+        self.name=haiku()
         self.encounter = []
         self.exits = []
         self.difficulty = difficulty
         self._type = _type # fight, social, or puzzle
-        self.name=f'{self.name}({self.name} - {self.difficulty})'
+        self.name=f'{self.id}({self.name} - {self.difficulty})'
 
         self.countdown = randrange(4,12)
 

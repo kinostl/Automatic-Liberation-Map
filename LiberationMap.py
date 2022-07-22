@@ -1,4 +1,4 @@
-from random import sample, randrange
+from random import randrange, choice
 from math import floor
 from itertools import chain
 from EncounterConfig import EncounterConfig
@@ -60,9 +60,9 @@ class Dungeon:
 
     #add shortcuts
     def addShortcut(branch, start):
-      endBranchDiff = sample([-1,1],1)[0]
+      endBranchDiff = choice([-1,1])
       endBranch = branch + endBranchDiff
-      endDifficulty = start.difficulty + sample([0, 1],1)[0]
+      endDifficulty = start.difficulty + choice([0, 1])
       endDifficulty = endDifficulty - 1
       if(endBranch >= len(self.branches.branches)):
         endBranch = 0
