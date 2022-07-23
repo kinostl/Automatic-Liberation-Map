@@ -2,6 +2,7 @@ from random import randrange, choice
 from math import floor
 from itertools import chain, groupby
 from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss, DungeonNodeStarter
+import sys
 
 class DungeonMap:
   def __init__(self):
@@ -14,10 +15,35 @@ class DungeonMap:
 
   def getTotalDifficulty(self):
     return sum(map(lambda x: x.difficulty, self.getFlattenedBranches()))
+  
+  def _getDuplicates(self, key):
+    duplicates=[]
+    branches = self.getFlattenedBranches()
+    for node in branches:
+      isMatch = lambda x: getattr(x, key) == getattr(node, key)
+      isNotSelf = lambda x: x != node
+      isDuplicate = lambda x: isMatch(x) and isNotSelf(x)
+      dupes = list(filter(isDuplicate, branches))
+      duplicates.extend(dupes)
+    return duplicates
+
+  def _fixDuplicates(self):
+    duplicateIds = self._getDuplicates('id')
+    duplicateNames = self._getDuplicates('name')
+    while(len(duplicateIds) > 0):
+      for duplicate in duplicateIds:
+        duplicate.reId()
+      duplicateIds = self._getDuplicates('id')
+
+    while(len(duplicateNames) > 0):
+      for duplicate in duplicateNames:
+        duplicate.reName()
+      duplicateNames = self._getDuplicates('name')
 
   def append(self, nodes):
     self.startingNode.addExit(nodes[0])
     self.branches.append(nodes)
+    self._fixDuplicates()
   
   def getExitList(self):
     return self.startingNode.getExitList()
@@ -40,7 +66,7 @@ class Dungeon:
 
     def connect(start, end):
       start.addExit(end)
-      end.addExit(start) # we connect both to check for generators
+      end.addEntrance(start) # we connect both to check for generators
 
     def getBranch(endingDifficulty):
       nodes = []
