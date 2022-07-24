@@ -61,6 +61,9 @@ class Dungeon:
     self.maxDifficulty = bossDifficulty - 1
     if (self.maxDifficulty <= 0):
       raise Exception("Can not calculate parameters given, please change and try again.")
+    if(playHours * timeScale > 105):
+      # TODO It would be more fun if it went over the threshold it went into megadungeon mode and had multiple bosses or something.
+      raise Exception("Time and Scale must total out to less than 105 minutes.")
     self.branches = DungeonMap()
     self.encounterConfig = encounterConfig
 
@@ -114,6 +117,7 @@ class Dungeon:
           addShortcut(branch, node)
 
     for _, nodes in self.branches.nodesByDifficulty():
+      # TODO this is where I should put some of the code that makes generators modify stuff. The rest should be in the Bot Controls probably.
       choice(list(nodes)).addGenerator()
 
   def printDiagram(self):
@@ -131,3 +135,10 @@ class Dungeon:
       for node in branch:
         totalTime = totalTime + (self.timeScale * node.difficulty)
     print(f'Expected Play Time: {totalTime/60}')
+  
+  def printEncounters(self):
+    # TODO This should get an encounter from every node and put it into a list and print it out
+    branches = self.branches.getFlattenedBranches()
+    for node in branches:
+      print(node.getEncounters())
+      pass

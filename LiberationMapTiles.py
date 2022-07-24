@@ -64,6 +64,40 @@ class DungeonNode:
 
     def getExitList(self):
         return list(map(lambda x: f'{self.title} --- {x.title}',self.exits))
+    
+    def getEncounters(self):
+        # TODO This should make a list of the encounters, the exits, the theme, the name. Exits should all have a Number Emoji next to them. (Consideration - Maybe DungeonNodes should get a random emoji that is then referenced here instead of numbers?)
+        # Also it lists any hazards or viruses and the like
+
+        # **Flying Villa *Level 2 Puzzle***
+
+        # **Countdown** 4
+        # **Alarm** Politics Hazard *( :x: to activate alarm.)*
+        # **Lockbox** Cryptolock *( :white_check_mark:  to clear tile.)*
+
+        # **Threats** Candy, Doors, Mettaur *(:boom: to delete contents.)*
+        # **Generator** Spawner *( :wastebasket: to disable generator.)*
+
+        # **Exits (Select to move.)**
+        # :one: Summer Glitter *(Level 1 Fight - Ninjoy)*
+        # :two: Quiet Sun *(Level 2 Puzzle - Blocks, Balloons)*
+
+        encounter=[]
+        encounter.append(f'**{self.name}** *Level {self.difficulty} {self._type}')
+        encounter.append('')
+        encounter.append(f'**Countdown** {self.countdown}')
+        encounter.append(f'**Alarm** {self.alarmTheme} {self.alarmType} *( :x: to activate alarm.)*')
+        encounter.append(f'**Lockbox** {self.lock} *( :white_check_mark:  to clear tile.)*')
+        encounter.append('')
+        encounter.append(f'**Threats** {self.threats} *(:boom: to delete contents.)*')
+        if(self.generator is not None):
+            encounter.append(f'**Generator** {self.generator} *( :wastebasket: to disable generator.)*')
+        encounter.append('')
+        encounter.append('**Exits *(Select to move.)***')
+        for num, connection in enumerate(self.getConnections()):
+            encounter.append(f':: {connection.name} *(Level {connection.difficulty} - {connection._type} - {connection.threats})*')
+        return '\n'.join(encounter)
+        # TODO Most of these variables aren't real also threats probably needs to be a function or something cause its probably a list that needs to be turned into a string.
 
 class DungeonNodeBasic(DungeonNode):
     def __init__(self, encounterConfig, difficulty, _type):
