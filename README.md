@@ -96,4 +96,4 @@ Its all very much output made for Progbot to interact with or any other bot that
 Shoutout to this article for inspiring a lot of the code in this by writing and sharing [The Zelda Dungeon Generator:
 Adopting Generative Grammars to
 Create Levels for Action-Adventure
-Games by Lavender](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf)
+Games by Lavender](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf) Specifically her study of Lenna's Inception in section 2.5.2
