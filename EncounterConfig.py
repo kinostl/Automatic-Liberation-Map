@@ -1,5 +1,9 @@
 from random import choice
 
+theme = '???' #randomly decided
+def getEncounter(type):
+    return str(type)
+
 class EncounterConfig:
     # encounters should be a dictionary of lists.
     # liberation maps expect these values: virus, hazard, alarm, lockbox, generator, boss

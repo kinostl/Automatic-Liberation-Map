@@ -1,15 +1,16 @@
+from __future__ import annotations
+from typing import List
 from random import randrange, choice
 from math import floor
 from itertools import chain, groupby
-from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss, DungeonNodeStarter
-import sys
+from LiberationMapTiles import DungeonNodeBasic, DungeonNodeBoss, DungeonNodeStarter, DungeonNode
 
 class DungeonMap:
   def __init__(self):
     self.startingNode = DungeonNodeStarter()
     self.branches = []
   
-  def getFlattenedBranches(self):
+  def getFlattenedBranches(self) -> List[DungeonNode]:
     difficulty = lambda x: x.difficulty
     return sorted(list(chain.from_iterable(self.branches)),key=difficulty)
 
@@ -53,7 +54,7 @@ class DungeonMap:
     return groupby(self.getFlattenedBranches(), key=difficulty)
 
 class Dungeon:
-  def __init__(self, encounterConfig, playHours=4, timeScale=15):
+  def __init__(self, playHours=4, timeScale=15):
     self.timeScale = timeScale
     totalPlayHours = playHours - (timeScale * 2) / 60
     totalDifficulty = (totalPlayHours * 60) / timeScale
@@ -65,7 +66,6 @@ class Dungeon:
       # TODO It would be more fun if it went over the threshold it went into megadungeon mode and had multiple bosses or something.
       raise Exception("Time and Scale must total out to less than 105 minutes.")
     self.branches = DungeonMap()
-    self.encounterConfig = encounterConfig
 
     def connect(start, end):
       start.addExit(end)
@@ -75,7 +75,7 @@ class Dungeon:
       nodes = []
       for i in range(endingDifficulty):
         difficultyStep = i+1
-        node = DungeonNodeBasic(self.encounterConfig, difficultyStep, '?')
+        node = DungeonNodeBasic(difficultyStep)
         if(i > 0):
           connect(nodes[-1], node)
         nodes.append(node)
@@ -83,7 +83,7 @@ class Dungeon:
 
     def getBossBranch(endingDifficulty):
       nodes = getBranch(endingDifficulty - 1)
-      node = DungeonNodeBoss(self.encounterConfig, endingDifficulty, '?')
+      node = DungeonNodeBoss(endingDifficulty)
       connect(nodes[-1], node)
       nodes.append(node)
       return nodes
@@ -136,9 +136,18 @@ class Dungeon:
         totalTime = totalTime + (self.timeScale * node.difficulty)
     print(f'Expected Play Time: {totalTime/60}')
   
-  def printEncounters(self):
-    # TODO This should get an encounter from every node and put it into a list and print it out
+  # GM just gets a list of the Summaries. That seems way less intimidating. 
+  # TODO This isn't very engaging, and should probably also list generators and network quirks and other inspirations
+  # TODO Actually maybe the above should be a seperate printGmSummary tool?
+  # TODO Does that mean there should be a printPlayerSummary tool as well? That could be a good of telling them what they've done to each square and where they still have to visit.
+  # TODO Start off with a "GMs trust me every nope I don't like typing this, toggles it is default to fog of war"
+  # TODO GM Command "show summary unfogged"
+  # TODO GM Command "show summary unfogged to players"
+  # TODO GM Command "unfog area"
+  # TODO GM Command "Show more tiles?"
+  # TODO Inform GM and Playes as necessary when something updates
+  def printSummary(self):
     branches = self.branches.getFlattenedBranches()
     for node in branches:
-      print(node.getEncounters())
+      print(node.getSummary())
       pass

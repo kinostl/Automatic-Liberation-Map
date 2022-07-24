@@ -1,7 +1,8 @@
 from LiberationMap import Dungeon
-from EncounterConfig import EncounterConfig
 
-dungeon = Dungeon(EncounterConfig({}), 7)
+dungeon = Dungeon()
 dungeon.printDiagram()
+print('---')
 dungeon.printExpectedPlayTime()
-dungeon.printEncounters()
+print('---')
+dungeon.printSummary()
