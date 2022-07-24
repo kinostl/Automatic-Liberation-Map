@@ -76,6 +76,8 @@ flowchart TD
 
 This is its own section because it is. This is what a node looks like. It contains a lot of information. Well, it looks something like this anyway. Anything thats obviously a filler word like `threat` or `alarm test` or `lock` is because the default getEncounter currently just returns the string its passed unless its alarm in which case it does a little logic for the getEncounters() function down the line. getEncounters() should probably be renamed to something more generic like getRoomDescription(). This is very muddy. Like MUD the software.
 
+Its all very much output made for Progbot to interact with or any other bot that can receive emojis and spit out outputs somehow. This usually means Discord but I don't know what the future is. This might be more like a normal dictionary or something or left up to the implementer to decide what to do with but for right now I want this here instead of there. It might turn into a translation layer or something but thats over complicating something that very likely has a narrow usecase.
+
 > **Misty Frost** *Level 2 fight*
 >   
 > **Countdown** 8  
