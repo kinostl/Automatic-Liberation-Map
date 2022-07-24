@@ -150,4 +150,9 @@ class Dungeon:
     branches = self.branches.getFlattenedBranches()
     for node in branches:
       print(node.getSummary())
+
+  def printEncounters(self):
+    branches = self.branches.getFlattenedBranches()
+    for node in branches:
+      print(node.getEncounters())
       pass

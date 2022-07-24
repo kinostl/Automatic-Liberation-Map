@@ -1,7 +1,12 @@
-from random import choice
+from random import choice, randrange
 
 theme = '???' #randomly decided
 def getEncounter(type):
+    if(type == 'alarm'):
+        return {
+            'theme': 'alarm',
+            'style': 'test'
+        }
     return str(type)
 
 class EncounterConfig:
@@ -10,6 +15,15 @@ class EncounterConfig:
     def __init__(self, encounters):
         self.encounters=encounters
         self.encounters['alarm']=[]
+        self.alarm = {
+            'theme': choice([]), # Like the element or class such as Wrecker this should actually be acquired from the Encounter table now that I think about it.
+            'style': choice([]) # Like the "High Alert"
+        }
+        encounterType = randrange(7)
+        # Actually benefit should be a classification of Alarm.
+        if encounterType == 6:
+            # theres a chance of being a beneficial encounter (1/7)
+            self.benefit = getEncounter('benefit')
         self.encounters['benefit']=[]
         self.encounters['lockbox']=[]
         self.encounters['generator']=[]

@@ -1,29 +1,9 @@
 from math import floor
 from random import choice
 
-adjs = [
-            "autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark",
-            "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter",
-            "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue",
-            "billowing", "broken", "cold", "damp", "falling", "frosty", "green",
-            "long", "late", "lingering", "bold", "little", "morning", "muddy", "old",
-            "red", "rough", "still", "small", "sparkling", "throbbing", "shy",
-            "wandering", "withered", "wild", "black", "young", "holy", "solitary",
-            "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine",
-            "polished", "ancient", "purple", "lively", "nameless"
-];
+adjs = ['Autumn', 'Hidden', 'Bitter', 'Misty', 'Silent', 'Empty', 'Dry', 'Dark', 'Summer', 'Icy', 'Delicate', 'Quiet', 'White', 'Cool', 'Spring', 'Winter', 'Patient', 'Twilight', 'Dawn', 'Crimson', 'Wispy', 'Weathered', 'Blue', 'Billowing', 'Broken', 'Cold', 'Damp', 'Falling', 'Frosty', 'Green', 'Long', 'Late', 'Lingering', 'Bold', 'Little', 'Morning', 'Muddy', 'Old', 'Red', 'Rough', 'Still', 'Small', 'Sparkling', 'Throbbing', 'Shy', 'Wandering', 'Withered', 'Wild', 'Black', 'Young', 'Holy', 'Solitary', 'Fragrant', 'Aged', 'Snowy', 'Proud', 'Floral', 'Restless', 'Divine', 'Polished', 'Ancient', 'Purple', 'Lively', 'Nameless']
 
-nouns = [
-    "waterfall", "river", "breeze", "moon", "rain", "wind", "sea", "morning",
-    "snow", "lake", "sunset", "pine", "shadow", "leaf", "dawn", "glitter",
-    "forest", "hill", "cloud", "meadow", "sun", "glade", "bird", "brook",
-    "butterfly", "bush", "dew", "dust", "field", "fire", "flower", "firefly",
-    "feather", "grass", "haze", "mountain", "night", "pond", "darkness",
-    "snowflake", "silence", "sound", "sky", "shape", "surf", "thunder",
-    "violet", "water", "wildflower", "wave", "water", "resonance", "sun",
-    "wood", "dream", "cherry", "tree", "fog", "frost", "voice", "paper",
-    "frog", "smoke", "star"
-];
+nouns = ['Waterfall', 'River', 'Breeze', 'Moon', 'Rain', 'Wind', 'Sea', 'Morning', 'Snow', 'Lake', 'Sunset', 'Pine', 'Shadow', 'Leaf', 'Dawn', 'Glitter', 'Forest', 'Hill', 'Cloud', 'Meadow', 'Sun', 'Glade', 'Bird', 'Brook', 'Butterfly', 'Bush', 'Dew', 'Dust', 'Field', 'Fire', 'Flower', 'Firefly', 'Feather', 'Grass', 'Haze', 'Mountain', 'Night', 'Pond', 'Darkness', 'Snowflake', 'Silence', 'Sound', 'Sky', 'Shape', 'Surf', 'Thunder', 'Violet', 'Water', 'Wildflower', 'Wave', 'Water', 'Resonance', 'Sun', 'Wood', 'Dream', 'Cherry', 'Tree', 'Fog', 'Frost', 'Voice', 'Paper', 'Frog', 'Smoke', 'Star']
 
 def haiku():
     adj = choice(adjs)

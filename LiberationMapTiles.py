@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Set
-from random import randrange, sample
+from random import randrange, sample, choice
 from RandomName import haiku
 from string import ascii_letters
 from EncounterConfig import getEncounter
@@ -18,22 +18,18 @@ class DungeonNode:
         self.entrances = []
         self.threats = []
         self.difficulty = difficulty
-        self._type = '?' # fight, social, or puzzle, decides the type of threats
+        self.alarm = getEncounter('alarm')
+        self.lock = getEncounter('lock')
+        self.theme = choice(['fight','social','puzzle']) #this decides the types of threats
+        #TODO inside of getEncounter lets add a dropoff thing so that the first is always guarenteed to be the type, then its a lesser chance on the next roll, and even less of a chance, and so on and so on, so that theres always a mix throughought the dungeon and not exclusively all the same stuff in each tile and hoping for generators to do mixes instead of having it be natural.
+        #TODO This would disable the type in the summary probably? I dunno, I still kinda like the idea of the players getting that hint but its not really a thing thats dictated its a thing thats observed.
+        #TODO maybe type should be inferred after the threats are rolled, thats not too difficutl to calculate. Just do some math with the threats and seeing which encounters they map to and go with the largest one.
         # probably also picks the type of alarm? Eh, that should be randomized
         # Same thing with lockboxes
         self.title=f'{self.id}({self.name} - {self.difficulty})'
 
         self.countdown = randrange(4,12)
 
-        encounterType = randrange(7)
-        if encounterType == 6:
-            # theres a chance of being a beneficial encounter (1/7)
-            self.encounter.append(getEncounter('benefit'))
-        else:
-            # encounters are alarms by default (6/7)
-            # alarms probably always just create a Hazard?
-            self.encounter.append(getEncounter('alarm'))
-            self.encounter.append(getEncounter('lockbox'))
 
     def addExit(self, dungeonNode):
         self.exits.append(dungeonNode)
@@ -67,8 +63,10 @@ class DungeonNode:
     # this might turn into an element of the generator type
     # actually the dungeon builder cares about this
 
+    def getThreatSummary(self):
+        return ", ".join(self.threats)
     def getSummary(self):
-        return f'{self.name} *(Level {self.difficulty} - {self._type} - {self.threats})*'
+        return f'{self.name} *(Level {self.difficulty} - {self.theme} - {self.getThreatSummary()})*'
 
     def getExitList(self):
         return list(map(lambda x: f'{self.title} --- {x.title}',self.exits))
@@ -108,14 +106,14 @@ class DungeonNode:
         # :two: Quiet Sun *(Level 2 Puzzle - Blocks, Balloons)*
 
         encounter=[]
-        encounter.append(f'**{self.name}** *Level {self.difficulty} {self._type}')
+        encounter.append(f'**{self.name}** *Level {self.difficulty} {self.theme}*')
         encounter.append('')
         encounter.append(f'**Countdown** {self.countdown}')
-        encounter.append(f'**Alarm** {self.alarmTheme} {self.alarmType} *( :x: to activate alarm.)*')
+        encounter.append(f'**Alarm** {self.alarm.get("theme")} {self.alarm.get("style")} *( :x: to activate alarm.)*')
         encounter.append(f'**Lockbox** {self.lock} *( :white_check_mark:  to clear tile.)*')
         encounter.append('')
-        encounter.append(f'**Threats** {self.threats} *(:boom: to delete contents.)*')
-        if(self.generator is not None):
+        encounter.append(f'**Threats** {self.getThreatSummary()} *(:boom: to delete contents.)*')
+        if(hasattr(self, 'generator')):
             encounter.append(f'**Generator** {self.generator} *( :wastebasket: to disable generator.)*')
         encounter.append('')
         encounter.append('**Exits *(Select to move.)***')
