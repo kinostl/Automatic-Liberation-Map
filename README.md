@@ -71,3 +71,20 @@ flowchart TD
 	Start --- jAZVyMQo(little flower - 1)
 	DFmjauPT(silent meadow - 1) --- rboFBegQ(muddy glitter - 2)
   ```
+
+# Example Node
+
+This is its own section because it is. This is what a node looks like. It contains a lot of information. Well, it looks something like this anyway. Anything thats obviously a filler word like `threat` or `alarm test` or `lock` is because the default getEncounter currently just returns the string its passed unless its alarm in which case it does a little logic for the getEncounters() function down the line. getEncounters() should probably be renamed to something more generic like getRoomDescription(). This is very muddy. Like MUD the software.
+
+> **Misty Frost** *Level 2 fight*
+>   
+> **Countdown** 8  
+> **Alarm** alarm test *( :x: to activate alarm.)*  
+> **Lockbox** lock *( :white_check_mark:  to clear tile.)*  
+>   
+> **Threats** threat, threat *(:boom: to delete contents.)*  
+>   
+> **Exits *(Select to move.)***  
+> :one: Fragrant Smoke *(Level 2 - fight - threat, threat)*  
+> :two: Dry Meadow *(Level 1 - social - threat)*  
+> :three: Spring Frost *(Level 3 - social - threat, threat)*
