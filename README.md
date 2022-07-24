@@ -90,3 +90,10 @@ Its all very much output made for Progbot to interact with or any other bot that
 > :one: Fragrant Smoke *(Level 2 - fight - threat, threat)*  
 > :two: Dry Meadow *(Level 1 - social - threat)*  
 > :three: Spring Frost *(Level 3 - social - threat, threat)*
+
+# Sources
+
+Shoutout to this article for inspiring a lot of the code in this by writing and sharing [The Zelda Dungeon Generator:
+Adopting Generative Grammars to
+Create Levels for Action-Adventure
+Games by Lavender](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf)
