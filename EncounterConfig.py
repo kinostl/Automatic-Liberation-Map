@@ -1,12 +1,15 @@
 from random import choice, randrange
 
 theme = '???' #randomly decided
+# this is a singleton so any time this is used elsewhere it'll be the same, which is nice.
+
 def getEncounter(type):
     if(type == 'alarm'):
         return {
             'theme': 'alarm',
             'style': 'test'
         }
+    # itertools.cycle would be a good way of remembering what type of threats have been used so that when someone calls for a new threat they'll always get something fitting. This is a good way of doing the fall off thing that was discussed in another file.
     return str(type)
 
 class EncounterConfig:
