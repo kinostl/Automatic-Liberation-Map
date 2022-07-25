@@ -10,6 +10,7 @@ def getEncounter(type):
             'style': 'test'
         }
     # itertools.cycle would be a good way of remembering what type of threats have been used so that when someone calls for a new threat they'll always get something fitting. This is a good way of doing the fall off thing that was discussed in another file.
+    # then we could use next() to iterate through that and some sort of static variable in here to keep track of it. (getEncounter.theme)
     return str(type)
 
 class EncounterConfig:
