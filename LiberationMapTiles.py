@@ -114,7 +114,7 @@ class DungeonNodeBoss(DungeonNode):
         DungeonNode.__init__(self, difficulty)
         for _ in range(difficulty-1):
             self.threats.append(getEncounter('threat'))
-        self.threats.append('boss')
+        self.threats.append(getEncounter('boss'))
         pass
 
 class DungeonNodeStarter(DungeonNode):

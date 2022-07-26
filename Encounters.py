@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, shuffle
 import csv
 
 themes = ['Nature', 'Fantasy', 'Science', 'Actions', 'Art', '???']
@@ -13,9 +13,11 @@ with open("elementdata.tsv") as file:
 with open("virusdata.tsv") as file:
     # One day we'll need it like this but for now
     # virus = list(csv.DictReader(file, dialect=csv.excel_tab))
-    virus = csv.DictReader(file, dialect=csv.excel_tab)
-    virus = [f'{x.get("Name", "Mettaur")} *(Virus)*' for x in list(virus)][themes.index(theme) :: len(themes)] # Keeps it even and for some reason shuffle() and get the first len(elem) viruses just didn't appeal.
-    # viruses are in order of type so this kinda striping probably should create somewhat consistent gameplay experiences in regards to always having a similar pool of virus types.
+    virusList = list(csv.DictReader(file, dialect=csv.excel_tab))
+    boss = [f'{x.get("Name", "Mettaur")} *(Boss)*' for x in virusList if 'Mega' in x.get('Tags') and 'Omega' not in x.get('Alias')]
+    virus = [f'{x.get("Name", "Mettaur")} *(Virus)*' for x in virusList if 'Mega' not in x.get('Tags')]
+    shuffle(virus)
+    virus = virus[:len(element)]
 
 lock = [ 'Lockbox', 'CryptoLock', 'ProgLock', 'SyncLock', 'StealthLock' ]
 threat = []
