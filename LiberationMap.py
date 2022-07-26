@@ -120,6 +120,10 @@ class Dungeon:
       # TODO this is where I should put some of the code that makes generators modify stuff. The rest should be in the Bot Controls probably.
       choice(list(nodes)).addGenerator()
 
+    for _, nodes in self.branches.nodesByDifficulty():
+      # TODO this is where I should put some of the code that makes generators modify stuff. The rest should be in the Bot Controls probably.
+      choice(list(nodes)).addBenefit()
+
   def printDiagram(self):
     print('flowchart TD')
     exits = self.branches.getExitList()
@@ -151,8 +155,91 @@ class Dungeon:
     for node in branches:
       print(node.getSummary())
 
+class DungeonBot(Dungeon):
   def printEncounters(self):
+    def _getNumberAsEmoji(number):
+        numberEmoji = {
+            '1':':one:',
+            '2':':two:',
+            '3':':three:',
+            '4':':four:',
+            '5':':five:',
+            '6':':six:',
+            '7':':seven:',
+            '8':':eight:',
+            '9':':nine:',
+            '0':':zero:',
+        }
+        numberString = ''.join(map(lambda x: numberEmoji[x], list(str(number))))
+        return numberString
+
     branches = self.branches.getFlattenedBranches()
     for node in branches:
-      print(node.getEncounters())
-      pass
+        # **Flying Villa *Level 2 Puzzle***
+
+        # **Countdown** 4
+        # **Alarm** Politics Hazard *( :x: to activate alarm.)*
+        # **Lockbox** Cryptolock *( :white_check_mark:  to clear tile.)*
+
+        # **Threats** Candy, Doors, Mettaur *(:boom: to delete contents.)*
+        # **Generator** Spawner *( :wastebasket: to disable generator.)*
+
+        # **Exits (Select to move.)**
+        # :one: Summer Glitter *(Level 1 Fight - Ninjoy)*
+        # :two: Quiet Sun *(Level 2 Puzzle - Blocks, Balloons)*
+
+        encounter=[]
+        encounter.append(f'**{node.name}** *Level {node.difficulty} {node.theme}*')
+        encounter.append('')
+        encounter.append(f'**Countdown** {node.countdown}')
+        encounter.append(f'**Alarm** {node.alarm} *( :x: to activate alarm.)*')
+        encounter.append(f'**Lockbox** {node.lock} *( :white_check_mark:  to clear tile.)*')
+        encounter.append('')
+        encounter.append(f'**Threats** {node.getThreatSummary()} *(:boom: to delete contents.)*')
+        if(hasattr(node, 'benefit')):
+            encounter.append(f'**Benefit** {node.benefit} *(:ribbon: to collect benefit!)*')
+        if(hasattr(node, 'generator')):
+            encounter.append(f'**Generator** {node.generator} *( :wastebasket: to disable generator.)*')
+        encounter.append('')
+        encounter.append('**Exits *(Select to move.)***')
+        for num, connection in enumerate(node.getConnections()):
+            encounter.append(f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
+        print('\n'.join(encounter))
+
+class DungeonWeb(Dungeon):
+  def printEncounters(self):
+    def _getNumberAsEmoji(number):
+        numberEmoji = {
+            '1':':one:',
+            '2':':two:',
+            '3':':three:',
+            '4':':four:',
+            '5':':five:',
+            '6':':six:',
+            '7':':seven:',
+            '8':':eight:',
+            '9':':nine:',
+            '0':':zero:',
+        }
+        numberString = ''.join(map(lambda x: numberEmoji[x], list(str(number))))
+        return numberString
+
+    branches = self.branches.getFlattenedBranches()
+    for node in branches:
+        encounter=[]
+        encounter.append(f'**{node.name}** *Level {node.difficulty} {node.theme}*')
+        encounter.append('')
+        encounter.append(f'**Countdown** {node.countdown}')
+        encounter.append(f'**Alarm** {node.alarm}')
+        encounter.append(f'**Lockbox** {node.lock}')
+        encounter.append('')
+        encounter.append(f'**Threats** {node.getThreatSummary()}')
+        if(hasattr(node, 'benefit')):
+            encounter.append(f'**Benefit** {node.benefit} Mystery Data')
+        if(hasattr(node, 'generator')):
+            encounter.append(f'**Generator** {node.generator}')
+        encounter.append('')
+        encounter.append('**Exits**')
+        for num, connection in enumerate(node.getConnections()):
+            encounter.append(f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
+        print('\n'.join(encounter))

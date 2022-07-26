@@ -1,6 +1,6 @@
-from LiberationMap import Dungeon
+from LiberationMap import DungeonWeb
 
-dungeon = Dungeon()
+dungeon = DungeonWeb()
 dungeon.printDiagram()
 print('---')
 dungeon.printExpectedPlayTime()
