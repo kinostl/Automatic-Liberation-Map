@@ -14,8 +14,8 @@ with open("virusdata.tsv") as file:
     # One day we'll need it like this but for now
     # virus = list(csv.DictReader(file, dialect=csv.excel_tab))
     virusList = list(csv.DictReader(file, dialect=csv.excel_tab))
-    boss = [f'{x.get("Name", "Mettaur")} *(Boss)*' for x in virusList if 'Mega' in x.get('Tags') and 'Omega' not in x.get('Alias')]
-    virus = [f'{x.get("Name", "Mettaur")} *(Virus)*' for x in virusList if 'Mega' not in x.get('Tags')]
+    boss = [f'{x.get("Name", "Mettaur")} *(Boss)*' for x in virusList if 'Mega' in x.get('Tags') and 'Omega' not in x.get('Alias') and x.get('Name')]
+    virus = [f'{x.get("Name", "Mettaur")} *(Virus)*' for x in virusList if 'Mega' not in x.get('Tags') and x.get('Name')]
     shuffle(virus)
     virus = virus[:len(element)]
 
