@@ -46,7 +46,7 @@ muddy glitter *(Level 2 - ? - threat,threat)*
 silent grass *(Level 3 - ? - threat,threat)*
 ```
 
-Threat will be less generic things like `fire` or `mettaur` representing viruses or hazards or the like. The `?` represents why type of tile it is, and might be removed at some point, since the collection of threats is more versatile than the guidance of what the tile type is. A player can't move to the next level until they've deleted the generator/signal node of their current level. 
+Threat will be less generic things like `fire` or `mettaur` representing viruses or hazards or the like. The `?` represents why type of tile it is, and might be removed at some point, since the collection of threats is more versatile than the guidance of what the tile type is. A player can't move to the next level until they've deleted the generator/signal node of their current level.
 
 The final node of every one of these maps spends one of its threats on a megavirus. This might travel based on the type it is, but this is up to the GM to do.
 
@@ -70,7 +70,7 @@ flowchart TD
 	DFmjauPT(silent meadow - 1) --- gwzNIcxp(old lake - 1)
 	Start --- jAZVyMQo(little flower - 1)
 	DFmjauPT(silent meadow - 1) --- rboFBegQ(muddy glitter - 2)
-  ```
+```
 
 # Example Node
 
@@ -78,18 +78,21 @@ This is its own section because it is. This is what a node looks like. It contai
 
 Its all very much output made for Progbot to interact with or any other bot that can receive emojis and spit out outputs somehow. This usually means Discord but I don't know what the future is. This might be more like a normal dictionary or something or left up to the implementer to decide what to do with but for right now I want this here instead of there. It might turn into a translation layer or something but thats over complicating something that very likely has a narrow usecase.
 
-> **Misty Frost** *Level 2 fight*
->   
+> **Hidden Leaf** _Level 2 Puzzle_
+>
 > **Countdown** 8  
-> **Alarm** alarm test *( :x: to activate alarm.)*  
-> **Lockbox** lock *( :white_check_mark:  to clear tile.)*  
->   
-> **Threats** threat, threat *(:boom: to delete contents.)*  
->   
-> **Exits *(Select to move.)***  
-> :one: Fragrant Smoke *(Level 2 - fight - threat, threat)*  
-> :two: Dry Meadow *(Level 1 - social - threat)*  
-> :three: Spring Frost *(Level 3 - social - threat, threat)*
+> **Alarm** Hazards! Spawns random element from the Art table. _(Its probably a good idea to base this off the difficulty level. Either roll an additional element for each difficulty level or increase how far it spreads or mention that its tougher than Normal. Maybe make it weaker if its a lower difficulty and it seems right. Such as making it Easy or single target.)_  
+> **Lockbox** Lockbox
+>
+> **Threats** Miramira _(Virus)_, BlotOut _(Virus)_  
+> **Generator** Shaker
+>
+> **Exits**  
+> :one: Cool River _(Level 1 - Social - Ceramics _(Hazard)_)_  
+> :two: Dark Glitter _(Level 2 - Puzzle - Jazz _(Hazard)_, Strings _(Hazard)_)_
+
+Each map comes with 1 Mystery Data per Difficulty Level.  
+Each map comes with 1 Boss at the Max Difficulty Level.
 
 # Sources
 
