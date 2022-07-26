@@ -37,6 +37,8 @@ class DungeonNode:
 
     def reId(self):
         self.id=''.join(sample(ascii_letters, k=8))
+        # this might be better serviced by id(self) instead? https://docs.python.org/3/library/functions.html#id
+        # Idk if it outputs something usable by mermaid though, but I don't know how important that is.
         pass
 
     def reName(self):
