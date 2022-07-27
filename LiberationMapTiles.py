@@ -7,6 +7,7 @@ from EncounterConfig import getEncounter
 from math import floor
 import Encounters
 
+
 class DungeonNode:
     # will be provided a difficulty
     # will be provided a theme
@@ -21,35 +22,34 @@ class DungeonNode:
         self.difficulty = difficulty
         self.alarm = getEncounter('alarm')
         self.lock = getEncounter('lock')
-        self.theme = choice(['Fight','Social','Puzzle']) #this decides the types of threats
-        #TODO inside of getEncounter lets add a dropoff thing so that the first is always guarenteed to be the type, then its a lesser chance on the next roll, and even less of a chance, and so on and so on, so that theres always a mix throughought the dungeon and not exclusively all the same stuff in each tile and hoping for generators to do mixes instead of having it be natural.
-        #TODO This would disable the type in the summary probably? I dunno, I still kinda like the idea of the players getting that hint but its not really a thing thats dictated its a thing thats observed.
-        #TODO maybe type should be inferred after the threats are rolled, thats not too difficutl to calculate. Just do some math with the threats and seeing which encounters they map to and go with the largest one.
+        # this decides the types of threats
+        self.theme = choice(['Fight', 'Social', 'Puzzle'])
+        # TODO inside of getEncounter lets add a dropoff thing so that the first is always guarenteed to be the type, then its a lesser chance on the next roll, and even less of a chance, and so on and so on, so that theres always a mix throughought the dungeon and not exclusively all the same stuff in each tile and hoping for generators to do mixes instead of having it be natural.
+        # TODO This would disable the type in the summary probably? I dunno, I still kinda like the idea of the players getting that hint but its not really a thing thats dictated its a thing thats observed.
+        # TODO maybe type should be inferred after the threats are rolled, thats not too difficutl to calculate. Just do some math with the threats and seeing which encounters they map to and go with the largest one.
         # probably also picks the type of alarm? Eh, that should be randomized
         # Same thing with lockboxes
         self.reTitle()
 
-        self.countdown = randrange(4,12)
-
+        self.countdown = randrange(4, 12)
 
     def addExit(self, dungeonNode):
         self.exits.append(dungeonNode)
+        self.connections = set(self.entrances + self.exits)
 
     def reId(self):
-        self.id=''.join(sample(ascii_letters, k=8))
+        self.id = ''.join(sample(ascii_letters, k=8))
         # this might be better serviced by id(self) instead? https://docs.python.org/3/library/functions.html#id
         # Idk if it outputs something usable by mermaid though, but I don't know how important that is.
         pass
 
     def reName(self):
-        self.name=haiku()
+        self.name = haiku()
         pass
 
     def addEntrance(self, dungeonNode):
         self.entrances.append(dungeonNode)
-
-    def getConnections(self) -> Set[DungeonNode]:
-        return set(self.entrances + self.exits)
+        self.connections = set(self.entrances + self.exits)
 
     def addGenerator(self):
         # generators double as signal nodes
@@ -64,7 +64,8 @@ class DungeonNode:
 
     def addBenefit(self):
         # self.benefit = getEncounter('benefit') Maybe at some point it'll be this way but its easier to do it this way
-        self.benefit = Encounters.benefit[floor(self.difficulty/len(Encounters.benefit))]
+        self.benefit = Encounters.benefit[floor(
+            self.difficulty/len(Encounters.benefit))]
         self.reTitle()
 
     def clearBenefit(self):
@@ -80,9 +81,9 @@ class DungeonNode:
             badges.append('G')
         if(len(badges) > 0):
             badges = ''.join(badges)
-            self.title=f'{self.id}({self.name} - {self.difficulty} - {badges})'
+            self.title = f'{self.id}({self.name} - {self.difficulty} - {badges})'
         else:
-            self.title=f'{self.id}({self.name} - {self.difficulty})'
+            self.title = f'{self.id}({self.name} - {self.difficulty})'
 
     # needs to be told its under the effects of a generator
     # this might turn into an element of the generator type
@@ -95,18 +96,19 @@ class DungeonNode:
         return f'{self.name} *(Level {self.difficulty} - {self.theme} - {self.getThreatSummary()})*'
 
     def getExitList(self):
-        return list(map(lambda x: f'{self.title} --- {x.title}',self.exits))
-    
+        return list(map(lambda x: f'{self.title} --- {x.title}', self.connections))
+
+
 class DungeonNodeBasic(DungeonNode):
     def __init__(self, difficulty):
         DungeonNode.__init__(self, difficulty)
         isBenefit = randrange(7) == 0
         for _ in range(difficulty):
             self.threats.append(getEncounter('threat'))
-    
+
 
 class DungeonNodeBoss(DungeonNode):
-    ## bossNode
+    # bossNode
     # boss node needs to provide a theme
     # themes are just gonna be the element table types
     # 1 difficulty is allocated to the megavirus and the other difficutlies are allocated to hazards or viruses
@@ -117,10 +119,13 @@ class DungeonNodeBoss(DungeonNode):
         self.threats.append(getEncounter('boss'))
         pass
 
+
 class DungeonNodeStarter(DungeonNode):
     def __init__(self):
-        self.name='Start'
-        self.title=self.name
-        self.exits=[]
-        self.entrances=[]
-        self.threats=[]
+        self.name = 'Start'
+        self.title = self.name
+        self.exits = []
+        self.entrances = []
+        self.threats = []
+        self.theme = 'Safe'
+        self.difficulty = 0

@@ -216,8 +216,11 @@ class DungeonBot(Dungeon):
                 encounter.append(
                     f'**Generator** {node.generator} *( :wastebasket: to disable generator.)*')
             encounter.append('')
-            encounter.append('**Exits *(Select to move.)***')
-            for num, connection in enumerate(node.getConnections()):
+            encounter.append('**Connections *(Select to move.)***')
+            if(node in self.branches.startingNode.connections):
+                encounter.append(
+                    f'{_getNumberAsEmoji(0)} {self.branches.startingNode.getSummary()}')
+            for num, connection in enumerate(node.connections):
                 encounter.append(
                     f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
             return '\n'.join(encounter)
@@ -259,8 +262,11 @@ class DungeonWeb(Dungeon):
             if(hasattr(node, 'generator')):
                 encounter.append(f'**Generator** {node.generator}')
             encounter.append('')
-            encounter.append('**Exits**')
-            for num, connection in enumerate(node.getConnections()):
+            encounter.append('**Connections**')
+            if(node in self.branches.startingNode.connections):
+                encounter.append(
+                    f'{_getNumberAsEmoji(0)} {self.branches.startingNode.getSummary()}')
+            for num, connection in enumerate(node.connections):
                 encounter.append(
                     f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
             output.append("\n".join(encounter))

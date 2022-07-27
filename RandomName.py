@@ -1,4 +1,3 @@
-from math import floor
 from random import choice
 
 adjs = ['Autumn', 'Hidden', 'Bitter', 'Misty', 'Silent', 'Empty', 'Dry', 'Dark', 'Summer', 'Icy', 'Delicate', 'Quiet', 'White', 'Cool', 'Spring', 'Winter', 'Patient', 'Twilight', 'Dawn', 'Crimson', 'Wispy', 'Weathered', 'Blue', 'Billowing', 'Broken', 'Cold', 'Damp', 'Falling', 'Frosty', 'Green', 'Long', 'Late',
