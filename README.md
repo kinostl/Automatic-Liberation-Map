@@ -1,10 +1,10 @@
 # Automatic Liberation Map
 
-The goal of this project is to provide a class that can produce strings that Progbot can print out to run an almost automated liberation map. The strings it produces are vague prompts that are strong enough to do most of the decision making for the game master and give them inspiration for their own descriptions.
+This makes a Node Map style Liberation Mission for NetBattlers. It uses Legend of Zelda inspired Procedural Generation documented by Becky Lavender in her [ZDG Dissertation](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf). You can get going right now by grabbing a pregenerated file from [The Examples](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) or you can clone this repo and run `printLiberationMap.py` to get an output thats [gist ready](https://gist.github.com/).
 
 # Play Guide
 
-Most of you clicking on this are looking for a play tool, not programming jargon. Everything Coding Style onwards is programming jargon. Heres what you want to know as a play tester
+Everything Coding Style onwards is programming jargon. Heres what you want to know as a play tester.
 
 ## I want to play with this!
 
