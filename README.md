@@ -1,6 +1,43 @@
 # Automatic Liberation Map
 
-The goal of this project is to provide a class that can produce strings that Progbot can print out to run an almost automated liberation map. The strings it produces are vague prompts that are strong enough to do most of the decision making for the game master and give them inspiration for their own descriptions.
+This makes a Node Map style Liberation Mission for NetBattlers. It uses Legend of Zelda inspired Procedural Generation documented by Becky Lavender in her [ZDG Dissertation](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf). You can get going right now by grabbing a pregenerated file from [The Examples](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) or you can clone this repo and run `printLiberationMap.py` to get an output thats [gist ready](https://gist.github.com/).
+
+# Play Guide
+
+Everything Coding Style onwards is programming jargon. Heres what you want to know as a play tester.
+
+## I want to play with this!
+
+[Click here](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) to open the Examples folder from that list above this. Inside you will find 8 example maps that I've uploaded. Find one you like, they were all generated using this program. There is not a website to easily generate these yet, but there will be soon.
+
+## I want to roll my own map!
+
+Thats cool! You can clone this repo and then run printLiberationMap.py, it'll give you github flavored markdown that you can put into a gist or something to get pretty formatting.
+
+## Can I share the map with my players?
+
+Honestly I suggest it. This is very hard to interpret otherwise. The future version plans to do a lot more note taking for everyone and use Progbot to handle the transitions between nodes. This should take a lot of handiwork off the Game Master and let them focus on interpetation instead, but for right now this seems like a standard amount of effort for a GM to accept when running a premade adventure.
+
+## Play Time Warning
+
+The expected playtimes are calculated by assuming 1 Difficulty will take 15 minutes. This means that I have not actually tested this. Feel free to expect this to take far less or far more time than listed, as your players might change it due to experience with the game, experience with their characters, or from the usual roleplaying fun that happens during these.
+
+## Running and Playing in an Automated Liberation Mission
+
+Every Liberation Map comes with a dungeon boss, who is a random megavirus. The goal of the Liberation Map by default is to defeat the boss. To do this you'll need to destroy its signal nodes - which are generators. These generators are also the keys to the dungeon so to say. A lot of this was built on Legend of Zelda inspired technology, so the phrase dungeon might be thrown here or there.
+
+Every Liberation Map has 3 "Difficulty Levels". A difficulty level determines how many viruses or hazards it spawns, and what style of Mystery Data it spawns. These are represented by the numbers on the map and the "Level 1" or "Level 2" or similar on the descriptions. A difficulty represents a span of 15 minutes at time of writing. If that doesn't work out to be the reality for you, please adjust accordingly. I suggest opening up new shortcuts, providing powerful one-off chips, or having the boss come to the party.
+
+Every Difficulty Level has a Generator in it. This Generator is one of the Boss's Signal Nodes. It is also the key to all locked connections in a Difficulty Level. When you destroy a Generator, all appropriately locked connections open up. A connection between nodes is unlocked by default if they share a Difficulty Level. Destroying a Generator unlocks every connection for every node that shares a Difficulty Level with the node you're currently on when you destroy the generator.
+
+The Game Master will be provided some pretty terse notes meant to act as more of a prompt. Treat this like a coloring book. Bring your own descriptions, flair, and context. You can drop these into any situation, they're pretty by the book. Each dungeon tries to fit a theme in its element choices as well. There should be a pretty even mix of viruses and hazards, so feel free to invite any combination of players in a standard format for 4 hours of gameplay. 
+
+This is also all very by the book, so you should feel safe there as well - Be a bit more mechanically literal than you normally would, and be on the look out for how generators might effect the gameplay. You'll want to check what the generators are and make a note of them somewhere, and reference them constantly to see if they're taking effect. They add a lot of the variety to the mission and introduce a lot of the additional danger that prevents anyone from being too comfortable for too long.
+
+
+## I want to modify this for something else!
+
+Yeah, feel free. The code in this is MIT licensed but make sure you change the EncounterConfig and Encounters files. Those aren't using copy I've made. They were written by Will Uhl.
 
 # Coding Style
 
