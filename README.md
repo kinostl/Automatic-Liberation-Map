@@ -1,6 +1,6 @@
 # Automatic Liberation Map
 
-This makes a Node Map style Liberation Mission for NetBattlers. It uses Legend of Zelda inspired Procedural Generation documented by Becky Lavender in her [ZDG Dissertation](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf). You can get going right now by grabbing a pregenerated file from [The Examples](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) or you can clone this repo and run `printLiberationMap.py` to get an output thats [gist ready](https://gist.github.com/).
+This makes a Node Map style Liberation Mission for [NetBattlers by Will Uhl](https://www.merrymancergames.com/wp-content/uploads/2021/09/NetBattlers-Beta-8-Mobile.pdf). It uses Legend of Zelda inspired Procedural Generation documented by Becky Lavender in her [ZDG Dissertation](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf). You can get going right now by grabbing a pregenerated file from [The Examples](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) or you can clone this repo and run `printLiberationMap.py` to get an output thats [gist ready](https://gist.github.com/).
 
 # Play Guide
 
