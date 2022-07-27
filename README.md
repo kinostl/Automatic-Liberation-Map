@@ -2,6 +2,38 @@
 
 The goal of this project is to provide a class that can produce strings that Progbot can print out to run an almost automated liberation map. The strings it produces are vague prompts that are strong enough to do most of the decision making for the game master and give them inspiration for their own descriptions.
 
+# Play Guide
+
+Most of you clicking on this are looking for a play tool, not programming jargon. Everything after this point is programming jargon. Heres what you want to know as a play tester
+
+## Examples
+
+Theres a folder called Examples in the top of this web page. Click on it and find one you like, they were all generated using this program.
+
+## Running and Playing in an Automated Liberation Mission
+
+Every Liberation Map comes with a dungeon boss, who is a random megavirus. The goal of the Liberation Map by default is to defeat the boss. To do this you'll need to destroy its signal nodes - which are generators. These generators are also the keys to the dungeon so to say. A lot of this was built on Legend of Zelda inspired technology, so the phrase dungeon might be thrown here or there.
+
+Every Liberation Map has 3 "Difficulty Levels". A difficulty level determines how many viruses or hazards it spawns, and what style of Mystery Data it spawns. These are represented by the numbers on the map and the "Level 1" or "Level 2" or similar on the descriptions. A difficulty represents a span of 15 minutes at time of writing. If that doesn't work out to be the reality for you, please adjust accordingly. I suggest opening up new shortcuts, providing powerful one-off chips, or having the boss come to the party.
+
+When you destroy a Difficulty Level's Generator you'll gain access to the next Difficulty Level. That is to say, you can access Difficulty Level 1 Nodes for free. To access the Level 2 Nodes, you'll need to destroy the Level 1 Generator. Similarly, you'll need to destroy the Level 2 Generator to access the Level 3 Node with the boss. 
+
+The Game Master will be provided some pretty terse notes meant to act as more of a prompt. Treat this like a coloring book. Bring your own descriptions, flair, and context. You can drop these into any situation, they're pretty by the book. Each dungeon tries to fit a theme in its element choices as well. There should be a pretty even mix of viruses and hazards, so feel free to invite any combination of players in a standard format for 4 hours of gameplay. 
+
+This is also all very by the book, so you should feel safe there as well - Be a bit more mechanically literal than you normally would, and be on the look out for how generators might effect the gameplay. You'll want to check what the generators are and make a note of them somewhere, and reference them constantly to see if they're taking effect. They add a lot of the variety to the mission and introduce a lot of the additional danger that prevents anyone from being too comfortable for too long.
+
+## Can I share the map with my players?
+
+Honestly I suggest it. This is very hard to interpret otherwise. The future version plans to do a lot more note taking for everyone and use Progbot to handle the transitions between nodes. This should take a lot of handiwork off the Game Master and let them focus on interpetation instead, but for right now this seems like a standard amount of effort for a GM to accept when running a premade adventure.
+
+## I want to roll my own map!
+
+Thats cool! You can clone this repo and then run printLiberationMap.py, it'll give you github flavored markdown that you can put into a gist or something to get pretty formatting.
+
+## I want to modify this for something else!
+
+Yeah, feel free. The code in this is MIT licensed but make sure you change the EncounterConfig and Encounters files. Those aren't using copy I've made. They were written by Will Uhl.
+
 # Coding Style
 
 I don't want to deal with pip for whats essentially a library, so I'm trying to keep everything batteries included for python 3.8, if you're contributing I'd appreciate that being respected, but I'll understand if the scope changes from there. I'll probably be approaching code reviews with that in mind
