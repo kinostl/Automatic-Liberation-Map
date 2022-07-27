@@ -6,13 +6,21 @@ The goal of this project is to provide a class that can produce strings that Pro
 
 Most of you clicking on this are looking for a play tool, not programming jargon. Everything Coding Style onwards is programming jargon. Heres what you want to know as a play tester
 
+## I want to play with this!
+
+[Click here](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) to open the Examples folder from that list above this. Inside you will find 8 example maps that I've uploaded. Find one you like, they were all generated using this program. There is not a website to easily generate these yet, but there will be soon.
+
+## I want to roll my own map!
+
+Thats cool! You can clone this repo and then run printLiberationMap.py, it'll give you github flavored markdown that you can put into a gist or something to get pretty formatting.
+
+## Can I share the map with my players?
+
+Honestly I suggest it. This is very hard to interpret otherwise. The future version plans to do a lot more note taking for everyone and use Progbot to handle the transitions between nodes. This should take a lot of handiwork off the Game Master and let them focus on interpetation instead, but for right now this seems like a standard amount of effort for a GM to accept when running a premade adventure.
+
 ## Play Time Warning
 
 The expected playtimes are calculated by assuming 1 Difficulty will take 15 minutes. This means that I have not actually tested this. Feel free to expect this to take far less or far more time than listed, as your players might change it due to experience with the game, experience with their characters, or from the usual roleplaying fun that happens during these.
-
-## Examples
-
-[Click here](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) to open the Examples folder from that list above this. Inside you will find 8 example maps that I've uploaded. Find one you like, they were all generated using this program.
 
 ## Running and Playing in an Automated Liberation Mission
 
@@ -26,13 +34,6 @@ The Game Master will be provided some pretty terse notes meant to act as more of
 
 This is also all very by the book, so you should feel safe there as well - Be a bit more mechanically literal than you normally would, and be on the look out for how generators might effect the gameplay. You'll want to check what the generators are and make a note of them somewhere, and reference them constantly to see if they're taking effect. They add a lot of the variety to the mission and introduce a lot of the additional danger that prevents anyone from being too comfortable for too long.
 
-## Can I share the map with my players?
-
-Honestly I suggest it. This is very hard to interpret otherwise. The future version plans to do a lot more note taking for everyone and use Progbot to handle the transitions between nodes. This should take a lot of handiwork off the Game Master and let them focus on interpetation instead, but for right now this seems like a standard amount of effort for a GM to accept when running a premade adventure.
-
-## I want to roll my own map!
-
-Thats cool! You can clone this repo and then run printLiberationMap.py, it'll give you github flavored markdown that you can put into a gist or something to get pretty formatting.
 
 ## I want to modify this for something else!
 
