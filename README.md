@@ -6,6 +6,10 @@ The goal of this project is to provide a class that can produce strings that Pro
 
 Most of you clicking on this are looking for a play tool, not programming jargon. Everything Coding Style onwards is programming jargon. Heres what you want to know as a play tester
 
+## Play Time Warning
+
+The expected playtimes are calculated by assuming 1 Difficulty will take 15 minutes. This means that I have not actually tested this. Feel free to expect this to take far less or far more time than listed, as your players might change it due to experience with the game, experience with their characters, or from the usual roleplaying fun that happens during these.
+
 ## Examples
 
 [Click here](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) to open the Examples folder from that list above this. Inside you will find 8 example maps that I've uploaded. Find one you like, they were all generated using this program.
@@ -16,7 +20,7 @@ Every Liberation Map comes with a dungeon boss, who is a random megavirus. The g
 
 Every Liberation Map has 3 "Difficulty Levels". A difficulty level determines how many viruses or hazards it spawns, and what style of Mystery Data it spawns. These are represented by the numbers on the map and the "Level 1" or "Level 2" or similar on the descriptions. A difficulty represents a span of 15 minutes at time of writing. If that doesn't work out to be the reality for you, please adjust accordingly. I suggest opening up new shortcuts, providing powerful one-off chips, or having the boss come to the party.
 
-When you destroy a Difficulty Level's Generator you'll gain access to the next Difficulty Level. That is to say, you can access Difficulty Level 1 Nodes for free. To access the Level 2 Nodes, you'll need to destroy the Level 1 Generator. Similarly, you'll need to destroy the Level 2 Generator to access the Level 3 Node with the boss. 
+Every Difficulty Level has a Generator in it. This Generator is one of the Boss's Signal Nodes. It is also the key to all locked connections in a Difficulty Level. When you destroy a Generator, all appropriately locked connections open up. A connection between nodes is unlocked by default if they share a Difficulty Level. 
 
 The Game Master will be provided some pretty terse notes meant to act as more of a prompt. Treat this like a coloring book. Bring your own descriptions, flair, and context. You can drop these into any situation, they're pretty by the book. Each dungeon tries to fit a theme in its element choices as well. There should be a pretty even mix of viruses and hazards, so feel free to invite any combination of players in a standard format for 4 hours of gameplay. 
 
