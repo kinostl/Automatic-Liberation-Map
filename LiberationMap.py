@@ -264,4 +264,7 @@ class DungeonWeb(Dungeon):
                 encounter.append(
                     f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
             output.append("\n".join(encounter))
+            output.append("")
+            output.append("---")
+            output.append("")
         return '\n'.join(output)

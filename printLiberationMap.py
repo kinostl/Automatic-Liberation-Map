@@ -6,12 +6,11 @@ network = choice(['COM', 'ORG', 'NET', 'INT', 'EDU', 'GOV', 'MIL'])
 name = dungeon.branches.getFlattenedBranches()[-1].name
 output = [
     f'# {name}.{network}',
+    dungeon.getExpectedPlayTime(),
     '',
     '```mermaid',
     dungeon.getDiagram(),
     '```',
-    '',
-    dungeon.getExpectedPlayTime(),
     '',
     '---',
     '',
