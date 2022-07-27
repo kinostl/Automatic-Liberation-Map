@@ -8,7 +8,7 @@ Most of you clicking on this are looking for a play tool, not programming jargon
 
 ## Examples
 
-Theres a folder called Examples in the top of this web page. Click on it and find one you like, they were all generated using this program.
+[Click here](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) to open the Examples folder from that list above this. Inside you will find 8 example maps that I've uploaded. Find one you like, they were all generated using this program.
 
 ## Running and Playing in an Automated Liberation Mission
 
