@@ -4,7 +4,7 @@ The goal of this project is to provide a class that can produce strings that Pro
 
 # Play Guide
 
-Most of you clicking on this are looking for a play tool, not programming jargon. Everything after this point is programming jargon. Heres what you want to know as a play tester
+Most of you clicking on this are looking for a play tool, not programming jargon. Everything Coding Style onwards is programming jargon. Heres what you want to know as a play tester
 
 ## Examples
 
