@@ -96,7 +96,7 @@ class DungeonNode:
         return f'{self.name} *(Level {self.difficulty} - {self.theme} - {self.getThreatSummary()})*'
 
     def getExitList(self):
-        return list(map(lambda x: f'{self.title} --- {x.title}', self.connections))
+        return list(map(lambda x: f'{self.title} --- {x.title}', self.exits))
 
 
 class DungeonNodeBasic(DungeonNode):

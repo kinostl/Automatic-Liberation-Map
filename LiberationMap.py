@@ -266,9 +266,10 @@ class DungeonWeb(Dungeon):
             if(node in self.branches.startingNode.connections):
                 encounter.append(
                     f'{_getNumberAsEmoji(0)} {self.branches.startingNode.getSummary()}')
-            for num, connection in enumerate(node.connections):
-                encounter.append(
-                    f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
+            if(hasattr(node, 'connections')):
+                for num, connection in enumerate(node.connections):
+                    encounter.append(
+                        f'{_getNumberAsEmoji(num+1)} {connection.getSummary()}')
             output.append("\n".join(encounter))
             output.append("")
             output.append("---")
