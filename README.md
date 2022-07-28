@@ -1,6 +1,6 @@
 # Automatic Liberation Map
 
-This makes a Node Map style Liberation Mission for NetBattlers. It uses Legend of Zelda inspired Procedural Generation documented by Becky Lavender in her [ZDG Dissertation](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf). You can get going right now by grabbing a pregenerated file from [The Examples](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) or you can clone this repo and run `printLiberationMap.py` to get an output thats [gist ready](https://gist.github.com/).
+This makes a Node Map style Liberation Mission for [NetBattlers by Will Uhl](https://www.merrymancergames.com/wp-content/uploads/2021/09/NetBattlers-Beta-8-Mobile.pdf). It uses Legend of Zelda inspired Procedural Generation documented by Becky Lavender in her [ZDG Dissertation](http://beckylavender.co.uk/wp-content/uploads/2017/11/ZDG_Dissertation.pdf). You can get going right now by grabbing a pregenerated file from [The Examples](https://github.com/kinostl/Automatic-Liberation-Map/tree/main/examples) or you can clone this repo and run `printLiberationMap.py` to get an output thats [gist ready](https://gist.github.com/).
 
 # Play Guide
 
@@ -24,7 +24,7 @@ The expected playtimes are calculated by assuming 1 Difficulty will take 15 minu
 
 ## Running and Playing in an Automated Liberation Mission
 
-Every Liberation Map comes with a dungeon boss, who is a random megavirus. The goal of the Liberation Map by default is to defeat the boss. To do this you'll need to destroy its signal nodes - which are generators. These generators are also the keys to the dungeon so to say. A lot of this was built on Legend of Zelda inspired technology, so the phrase dungeon might be thrown here or there.
+Every Liberation Map comes with a dungeon boss, who is a random megavirus. The goal of the Liberation Map by default is to defeat the boss. To reach the boss you'll need to destroy its Signal Node Generators, which are both Signal Nodes and Generators placed throughout the map. These generators are also the keys to the dungeon so to say. A lot of this was built on Legend of Zelda inspired technology, so the phrase dungeon might be thrown here or there.
 
 Every Liberation Map has 3 "Difficulty Levels". A difficulty level determines how many viruses or hazards it spawns, and what style of Mystery Data it spawns. These are represented by the numbers on the map and the "Level 1" or "Level 2" or similar on the descriptions. A difficulty represents a span of 15 minutes at time of writing. If that doesn't work out to be the reality for you, please adjust accordingly. I suggest opening up new shortcuts, providing powerful one-off chips, or having the boss come to the party.
 
